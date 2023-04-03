@@ -15,9 +15,9 @@
 
 int main(void)
 {
-    int n, poeni[MAX - 1];                          // 1)
+    int n, poeni[MAX - 1];                      // 1)
     scanf("%d", &n);
-    n = n * BROJ_DOMACIH;                           // Broj elemenata niza (za svakog studenta *broj domacih)
+    n = n * BROJ_DOMACIH;                       // Broj elemenata niza (za svakog studenta *broj domacih)
     if (n <= 0 || n > MAX)
     {
         return 1;
