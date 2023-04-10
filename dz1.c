@@ -60,7 +60,7 @@ int main(void)
         }
         max_poeni[i] = t;
     }
-    int min_poeni[MAX];
+    int min_poeni[MAX];                         // 4)
     for (int i = 0; i < BROJ_DOMACIH; i++)      
     {
         t = poeni[i];
