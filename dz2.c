@@ -45,6 +45,12 @@ int main(void)
             }
         }
     }
+    int k;
+    scanf("%d", &k);
+    if (k <= 0 || k > m || k > n )
+    {
+        return 0;
+    }
     for (int i = 0; i < m; i++)
     {
         free(matrica[i]);
