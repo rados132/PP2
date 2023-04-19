@@ -12,15 +12,20 @@ int main(void)
     int **matrica = calloc(m, sizeof(int *));
     if (matrica == NULL)
     {
-        printf("GRESKA");
+        printf("MEM_GRESKA");
         return 0;
     }
     for (int i = 0; i < m; i++)
     {
         matrica[i] = calloc(n, sizeof(int));
         if (matrica[i] == NULL)
-        {
-            printf("GRESKA");
+        {   
+            for (int j = 0; j < i; j++)
+            {
+                free(matrica[j]);
+            }
+            free(matrica);
+            printf("MEM_GRESKA");
             return 0;
         }
     }
@@ -30,6 +35,17 @@ int main(void)
         {
             scanf("%d", &matrica[i][j]);
         }
+    }
+    int k;
+    scanf("%d", &k);
+    if (k <= 0 || k > m || k > n )
+    {
+        for (int i = 0; i < m; i++)
+        {
+            free(matrica[i]);
+        }
+        free(matrica);
+        return 0;
     }
     for (int i = 0; i < m; i++)
     {
@@ -41,26 +57,23 @@ int main(void)
             }
             else
             {
-                printf("%d\n", matrica[i][j]);
+                printf("%d", matrica[i][j]);
             }
         }
+        if (i != m - 1)
+        {
+            putchar('\n');
+        }
     }
-    int k;
-    scanf("%d", &k);
-    if (k <= 0 || k > m || k > n )
+    int s, max_suma = 0, pozicija[] = {0, 0};
+    for (int i = 0; i <= m - k; i++)
     {
-        return 0;
-    }
-    int s, max_suma, pozicija[2];
-    max_suma = 0;
-    for (int i = 0; i < m; i++)
-    {
-        for (int j = 0; j < n; j++)
+        for (int j = 0; j <= n - k; j++)
         {
             s = 0;
-            for (int p = 0; p < k && i + p < m; p++)
+            for (int p = 0; p < k; p++)
             {
-                for (int q = 0; q < k && j + q < n; q++)
+                for (int q = 0; q < k; q++)
                 {
                     s += matrica[i + p][j + q];
                 }
@@ -73,6 +86,7 @@ int main(void)
             }
         }  
     }
+    putchar('\n');
     for (int i = pozicija[0]; i < pozicija[0] + k; i++)
     {
         for (int j = pozicija[1]; j < pozicija[1] + k; j++)
@@ -88,7 +102,7 @@ int main(void)
         }
         if (i != pozicija[0] + k - 1)
         {
-            printf("\n");
+            putchar('\n');
         }
     }   
     for (int i = 0; i < m; i++)
