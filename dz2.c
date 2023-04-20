@@ -52,6 +52,21 @@ int main(void)
             scanf("%d", &matrica[i][j]);
         }
     }
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            printf("%d", matrica[i][j]);
+            if (j != n - 1)
+            {
+                putchar(' ');
+            }
+        }
+        if (i != m - 1)
+        {
+            putchar('\n');
+        }
+    }
     int k;
     scanf("%d", &k);
     if (k <= 0 || k > m || k > n )
@@ -62,24 +77,6 @@ int main(void)
         }
         free(matrica);
         return 0;
-    }
-    for (int i = 0; i < m; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            if (j != n - 1)
-            {
-                printf("%d ", matrica[i][j]);
-            }
-            else
-            {
-                printf("%d", matrica[i][j]);
-            }
-        }
-        if (i != m - 1)
-        {
-            putchar('\n');
-        }
     }
     int s, max_suma = 0, pozicija[] = {0, 0};
     for (int i = 0; i <= m - k; i++)
@@ -107,13 +104,10 @@ int main(void)
     {
         for (int j = pozicija[1]; j < pozicija[1] + k; j++)
         {
+            printf("%d", matrica[i][j]);
             if (j != pozicija[1] + k - 1)
             {
-                printf("%d ", matrica[i][j]);
-            }
-            else
-            {
-                printf("%d", matrica[i][j]);
+                putchar(' ');
             }
         }
         if (i != pozicija[0] + k - 1)
