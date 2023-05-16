@@ -1,3 +1,17 @@
+/*
+    Napisati program koji u nizu stringova konvertuje merne jedinice za merenje frekvencije (Hz), dužine (m), težine (g) i bajtova (B). Moguće je konvertovanje u sledeće prefikse za mernu jedinicu: mili (m, 10-3), kilo (k, 103), mega (M, 106) i giga (G, 109). Pre stringova se unosi odgovarajuća vrednost stepena (-3, 3, 6 ili 9) u koji je potrebno izvršiti konverziju. Ukoliko se unese neadekvatan broj ispisati poruku GRESKA. U stringovima se odmah nakon celobrojne ili realne vrednosti nalazi prefiks (ako postoji), a zatim i sama merna jedinica. Pretpostaviti da će nakon konverzije rezultat uvek biti ceo broj. Za konverziju stringa u realan broj može se koristiti funkcija atof() koja se koristi na isti način kao i funkcija atoi(). Broj stringova, odnosno redova, nije unapred poznat.
+
+    Program napisati prema sledećim stavkama. Prilikom izrade pojedinačne stavke pretpostaviti da su funkcije iz stavki koje su prethodile trenutnoj date i da njihove funkcionalnosti odgovaraju datom opisu.
+
+    1. Implementirati funkciju char* readLine(); koja čita jedan red sa standardnog ulaza i vraća pokazivač na taj učitani red.
+
+    2. Implementirati funkciju char** readLines(int *n); koja čita stringove. Funkcija kao povratnu vrednost vraća niz pokazivača na unete stringove. Takođe, funkcija preko argumenta n vraća broj unetih vrednosti.
+
+    3. Implementirati funkciju void updateLines(int convertTo, char **lines, int n); koji u nizu stringova lines dužine n ažurira sve vrednosti prefiks zadat preko convertTo prema navedenom pravilu.
+
+    4. Napisati glavni program koji korišćenjem prethodno realizovanih funkcija pročita vrednost prefiksa i stringove sa standardnog ulaza, menja sve vrednosti mernog sistema na opisani način i ispiše rezultat na standardni izlaz.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -105,11 +119,6 @@ char** readLines(int *n)
         if (lines == NULL)
         {
             printf("MEM_GRESKA");
-            for (int i = 0; i <= *n; i++)
-            {
-                free(lines[i]);
-            }
-            free(lines);
             exit(0);
         }
         (*n)++;
@@ -128,8 +137,7 @@ void updateLines(int convertTo, char **lines, int n)
             {-3, 0, 3, 6, 9}
         };
 
-        char *find;
-        char *unitPointer;
+        char *find, *unitPointer;
         int currentPwr;
 
         for (int p = 0; p < 4; p++)
