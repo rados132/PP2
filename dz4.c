@@ -29,10 +29,8 @@ int main(void)
 {
     //stdin = fopen("input.txt", "r");
 
-    Article *articles;
-    Advertisement *advertisements;
-    articles = readArticles();
-    advertisements = readAdvertisements();
+    Article *articles = readArticles();
+    Advertisement *advertisements = readAdvertisements();
     writePages(articles, advertisements);
     freeAdvertisements(advertisements);
     return 0;
@@ -160,14 +158,13 @@ void writePages(Article *articles, Advertisement *advertisements)
 {
     int pageCount = 0;
     float pageSpace = 1;
-    int j = 0;
-    while (1) // articles != NULL
+    while (1) 
     {
         float previous = 0;
         Article *max = NULL;
         for (Article *tmp = articles; tmp != NULL; tmp = tmp->next)
         {
-            if (tmp->percentage <= pageSpace && tmp->percentage > previous)
+            if (tmp->percentage < pageSpace && tmp->percentage > previous)
             {
                 previous = tmp->percentage;
                 max = tmp;
@@ -177,25 +174,22 @@ void writePages(Article *articles, Advertisement *advertisements)
         {
             printf("PAGE %d\n", pageCount);
         }
-        if (max->percentage <= pageSpace)
+        printf("ARTICLE:%s", max->article);
+        pageSpace -= max->percentage;
+        if (articles == max)
         {
-            printf("ARTICLE:%s", max->article);
-            pageSpace -= max->percentage;
-            if (articles == max)
+            articles = max->next;
+            free(max);
+        }
+        else
+        {
+            Article *current;
+            for (Article *tmp = articles; tmp->next != max->next; tmp = tmp->next)
             {
-                articles = max->next;
-                free(max);
+                current = tmp;
             }
-            else
-            {
-                Article *current;
-                for (Article *tmp = articles; tmp->next != max->next; tmp = tmp->next)
-                {
-                    current = tmp;
-                }
-                current->next = max->next;
-                free(max);
-            }
+            current->next = max->next;
+            free(max);
         }
         if (articles == NULL)
         {
@@ -220,7 +214,7 @@ void writePages(Article *articles, Advertisement *advertisements)
                 min = tmp->percentage;
             }
         }
-        if (min > pageSpace)
+        if (min >= pageSpace)
         {
             pageSpace = 1;
             pageCount++;
@@ -233,7 +227,7 @@ void writePages(Article *articles, Advertisement *advertisements)
             }
             else
             {
-                printf("<ADVERTISEMENT_PLACEHOLDER>\n");
+                printf("<ADVERTISEMENT_PLACEHOLDER>");
             }
         }
     }
@@ -255,5 +249,9 @@ void writePages(Article *articles, Advertisement *advertisements)
                 }
             }
         }
+    }
+    else
+    {
+        printf("UNUSED ADVERTISEMENT");
     }
 }
