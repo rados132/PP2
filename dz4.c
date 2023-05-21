@@ -33,20 +33,7 @@ int main(void)
     Advertisement *advertisements;
     articles = readArticles();
     advertisements = readAdvertisements();
-
-    for (Article *tmp = articles; tmp != NULL; tmp = tmp->next)
-    {
-        printf("%.2f %s", tmp->percentage, tmp->article);
-    }
-
-    for (Advertisement *tmp = advertisements; tmp != NULL; tmp = tmp->next)
-    {
-        printf("%s", tmp->advertisement);
-    }
-
     writePages(articles, advertisements);
-
-    freeArticles(articles);
     freeAdvertisements(advertisements);
     return 0;
 }
@@ -82,6 +69,7 @@ Article* readArticles()
     {
         if (percentage <= 0 || percentage > 1)
         {
+            printf("ERROR");
             freeArticles(head);
             exit(0);
         }
@@ -170,20 +158,102 @@ Advertisement* readAdvertisements()
 
 void writePages(Article *articles, Advertisement *advertisements)
 {
-    int i = 0;
-    while ((i++) == 0)
+    int pageCount = 0;
+    float pageSpace = 1;
+    int j = 0;
+    while (1) // articles != NULL
     {
-        int pageCount = 0, pageSpace = 1;
         float previous = 0;
         Article *max = NULL;
         for (Article *tmp = articles; tmp != NULL; tmp = tmp->next)
         {
-            if (tmp->percentage > previous)
+            if (tmp->percentage <= pageSpace && tmp->percentage > previous)
             {
+                previous = tmp->percentage;
                 max = tmp;
             }
         }
-        putchar('\n');
-        printf("%f", max->percentage);
+        if (pageSpace == 1)
+        {
+            printf("PAGE %d\n", pageCount);
+        }
+        if (max->percentage <= pageSpace)
+        {
+            printf("ARTICLE:%s", max->article);
+            pageSpace -= max->percentage;
+            if (articles == max)
+            {
+                articles = max->next;
+                free(max);
+            }
+            else
+            {
+                Article *current;
+                for (Article *tmp = articles; tmp->next != max->next; tmp = tmp->next)
+                {
+                    current = tmp;
+                }
+                current->next = max->next;
+                free(max);
+            }
+        }
+        if (articles == NULL)
+        {
+            if (advertisements != NULL)
+            {
+                printf("ADVERTISEMENT: %s", advertisements->advertisement);
+                Advertisement *tmp = advertisements;
+                advertisements = tmp->next;
+                free(tmp);
+            }
+            else
+            {
+                printf("<ADVERTISEMENT_PLACEHOLDER>");
+            }
+            break;
+        }
+        float min = articles->percentage;
+        for (Article *tmp = articles; tmp != NULL; tmp = tmp->next)
+        {
+            if (tmp->percentage < min)
+            {
+                min = tmp->percentage;
+            }
+        }
+        if (min > pageSpace)
+        {
+            pageSpace = 1;
+            pageCount++;
+            if (advertisements != NULL)
+            {
+                printf("ADVERTISEMENT: %s", advertisements->advertisement);
+                Advertisement *tmp = advertisements;
+                advertisements = tmp->next;
+                free(tmp);
+            }
+            else
+            {
+                printf("<ADVERTISEMENT_PLACEHOLDER>\n");
+            }
+        }
+    }
+    if (advertisements != NULL)
+    {
+        printf("UNUSED ADVERTISEMENT\n");
+        for (Advertisement *tmp = advertisements; tmp != NULL; tmp = tmp->next)
+        {
+            if (tmp->next != NULL)
+            {
+                printf("%s", tmp->advertisement);
+            }
+            else
+            {
+                int i = 0;
+                while (tmp->advertisement[i] != '\n')
+                {
+                    putchar(tmp->advertisement[i++]);
+                }
+            }
+        }
     }
 }
