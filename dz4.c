@@ -27,8 +27,6 @@ void writePages(Article *articles, Advertisement *advertisements);
 
 int main(void)
 {
-    //stdin = fopen("input.txt", "r");
-
     Article *articles = readArticles();
     Advertisement *advertisements = readAdvertisements();
     writePages(articles, advertisements);
