@@ -13,6 +13,7 @@ AddressBook;
 
 char* readRow(FILE *input);
 AddressBook* readFile(char *inputFile);
+void removeContacts(AddressBook *head, char *displayName);
 
 int main(int argc, char *argv[])
 {
@@ -21,13 +22,11 @@ int main(int argc, char *argv[])
         printf("ARG_GRESKA");
         exit(0);
     }
+    AddressBook *addressBook = readFile(argv[1]);
     if (argc = 4)
     {
-        char *displayName = argv[3];
+        removeContacts(addressBook, argv[3]);
     }
-    char *inputFile = argv[1];
-    char *outputFile = argv[2];
-
     return 0;
 }
 
@@ -93,4 +92,9 @@ AddressBook* readFile(char *inputFile)
     }
     fclose(input);
     return head;
+}
+
+void removeContacts(AddressBook *head, char *displayName)
+{
+    
 }
