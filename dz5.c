@@ -2,18 +2,19 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX 100
+#define BUFFER 1000
 
 typedef struct node
 {
-    char *info;
+    char **info;
     struct node *next;
 }
 AddressBook;
 
-char* readRow(FILE *input);
+char** readRow(FILE *input);
 AddressBook* readFile(char *inputFile);
 void removeContacts(AddressBook *head, char *displayName);
+void writeFile(AddressBook *head);
 
 int main(int argc, char *argv[])
 {
@@ -22,27 +23,73 @@ int main(int argc, char *argv[])
         printf("ARG_GRESKA");
         exit(0);
     }
-    AddressBook *addressBook = readFile(argv[1]);
-    if (argc = 4)
+    FILE *input = fopen("ulaz.csv", "r");
+    char **row = readRow(input);
+    fclose(input);
+    FILE *output = fopen("output.txt", "w");
+    for (int i = 0; i < 37; i++)
     {
-        removeContacts(addressBook, argv[3]);
+        fprintf(output, "%s\n", row[i]);
     }
+    fclose(output);
+    // AddressBook *addressBook = readFile(argv[1]);
+    // writeFile(addressBook);
+    // if (argc = 4)
+    // {
+    //     removeContacts(addressBook, argv[3]);
+    // }
     return 0;
 }
 
-char* readRow(FILE *input)
+char** readRow(FILE *input)
 {
-    char buffer[MAX], *row;
-    if (fgets(buffer, MAX, input) != NULL)
+    char buffer[BUFFER], **row;
+    row = malloc(sizeof(char *));
+    if (row == NULL)
     {
-        row = calloc(strlen(buffer), sizeof(char));
-        if (row == NULL)
+        printf("MEM_GRESKA");
+        exit(0);
+    }
+    if (fgets(buffer, BUFFER, input) != NULL)
+    {
+        int charCnt = 0, columnCnt = 0;
+        printf("%lu", strlen(buffer));
+        for (int i = 0; i < strlen(buffer) - 1; i++, charCnt++)
         {
-            printf("MEM_GRESKA");
-            exit(0);
-        }
-        strcpy(row, buffer);
-        return buffer;
+            if (buffer[i] == ',')
+            {
+                row = realloc(row, (columnCnt + 1) * sizeof(char *));
+                if (row == NULL)
+                {
+                    printf("MEM_GRESKA");
+                    exit(0);
+                }
+                row[columnCnt] = calloc(charCnt, sizeof(char));
+                if (row[columnCnt] == NULL)
+                {
+                    printf("MEM_GRESKA");
+                    exit(0);
+                }
+                if (i != 0 && buffer[i - 1] == ',')
+                {
+                    row[columnCnt][0] = '\0';
+                }
+                else
+                { 
+                    if ((i - charCnt) != 0)
+                    {
+                        strncpy(row[columnCnt], (buffer + i - charCnt + 1), charCnt - 1);
+                    }
+                    else
+                    {       
+                        strncpy(row[columnCnt], (buffer + i - charCnt), charCnt);
+                    }
+                }
+                charCnt = 0;
+                columnCnt++;
+            }
+        }       
+        return row;
     }
     else
     {
@@ -54,7 +101,7 @@ AddressBook* readFile(char *inputFile)
 {
     FILE *input;
     input = fopen(inputFile, "r");
-    if (input = NULL)
+    if (input == NULL)
     {
         printf("DAT_GRESKA");
         exit(0);
@@ -68,7 +115,7 @@ AddressBook* readFile(char *inputFile)
     }
     head->next = NULL;
     current = head;
-    char *row;
+    char **row;
     int contactsCnt = 0;
     while (row = readRow(input), row != NULL)
     {
@@ -94,7 +141,26 @@ AddressBook* readFile(char *inputFile)
     return head;
 }
 
-void removeContacts(AddressBook *head, char *displayName)
-{
+// void removeContacts(AddressBook *head, char *displayName)
+// {
+//     for (AddressBook *tmp = head; tmp != NULL; tmp = tmp->next)
+//     {
+        
+//     }
     
+// }
+
+void writeFile(AddressBook *head)
+{
+    FILE *output;
+    output = fopen("output.txt", "w");
+    for (AddressBook *tmp = head; tmp != NULL; tmp = tmp->next)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            printf("%s ", tmp->info[i]);
+        }
+        putchar('\n');
+    }
+    fclose(output);
 }
