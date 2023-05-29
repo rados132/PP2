@@ -1,0 +1,147 @@
+dn: cn=Ivan Jovanovic,mail=ajvanho@mail.ru
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: mozillaAbPersonAlpha
+givenName: Ivan
+sn: Jovanovic
+cn: Ivan Jovanovic
+mail: ajvanho@mail.ru
+modifytimestamp: 0
+homePhone: 011/310-2955
+mobile: 064/555-555
+mozillaHomeStreet: Tosin bunar 241
+mozillaHomeLocalityName: Beograd
+
+dn: cn=Marko Misic,mail=marko.misic@etf.rs
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: mozillaAbPersonAlpha
+givenName: Marko
+sn: Misic
+cn: Marko Misic
+mail: marko.misic@etf.rs
+modifytimestamp: 0
+street: Bulevar kralja Aleksandra 73
+l: Beograd
+postalCode: 11000
+title: Asistent
+ou: RTI
+o: Elektrotehnicki fakultet
+mozillaWorkUrl: http://www.etf.rs
+
+dn: cn=Nikola Nikolic,mail=nik@yahoo.com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: mozillaAbPersonAlpha
+givenName: Nikola
+sn: Nikolic
+cn: Nikola Nikolic
+mail: nik@yahoo.com
+modifytimestamp: 0
+
+dn: cn=Petar Peric,mail=peraperic@etf.rs
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: mozillaAbPersonAlpha
+givenName: Petar
+sn: Peric
+cn: Petar Peric
+mozillaNickname: Peca
+mail: peraperic@etf.rs
+modifytimestamp: 0
+telephoneNumber: 011/222-555
+homePhone: 013/777-555
+facsimiletelephonenumber: 011/888-555
+pager: 060/112
+mobile: 064/999-999
+mozillaHomeStreet: Programskog jezika C 38
+mozillaHomeLocalityName: Pancevo
+mozillaHomeState: Vojvodina
+mozillaHomePostalCode: 26000
+mozillaHomeCountryName: Srbija
+street: Bulevar Kralja Aleksandra
+l: Beograd
+st: Beograd
+postalCode: 11000
+c: Srbija
+title: Dipl. ing
+ou: RTI
+o: Elektrotehnicki fakultet
+mozillaWorkUrl: http://home.etf.rs/~pera
+mozillaHomeUrl: http://www.panet.rs/~pera
+description: Pera je mnogo dobar covek
+
+dn: cn=Marko Misic,mail=marko.misic@etf.bg.ac.rs
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: mozillaAbPersonAlpha
+givenName: Marko
+sn: Misic
+cn: Marko Misic
+mail: marko.misic@etf.bg.ac.rs
+mozillaSecondEmail: marko1@yahoo.com, marko2@yahoo.com
+modifytimestamp: 0
+
+dn: cn=Mika Petrovic,mail=mika@gmail.com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: mozillaAbPersonAlpha
+givenName: Mika
+sn: Petrovic
+cn: Mika Petrovic
+mail: mika@gmail.com
+modifytimestamp: 0
+mobile: 064/333-555
+
+dn: cn=Radovan Radic,mail=ralezmaj@gmail.com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: mozillaAbPersonAlpha
+givenName: Radovan
+sn: Radic
+cn: Radovan Radic
+mozillaNickname: Rale Zmaj
+mail: ralezmaj@gmail.com
+modifytimestamp: 0
+telephoneNumber: 011/111-555
+o: Zmaj Software
+
+dn: cn=Nikola Teslic,mail=nikola.teslic@gmail.com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: mozillaAbPersonAlpha
+givenName: Nikola
+sn: Teslic
+cn: Nikola Teslic
+mail: nikola.teslic@gmail.com
+mozillaSecondEmail: nikola.teslic@rtrk.com
+modifytimestamp: 0
+
+dn: cn=Pero Antic,mail=pera.antic@nba.com
+objectclass: top
+objectclass: person
+objectclass: organizationalPerson
+objectclass: inetOrgPerson
+objectclass: mozillaAbPersonAlpha
+givenName: Pero
+sn: Antic
+cn: Pero Antic
+mail: pera.antic@nba.com
+modifytimestamp: 0
+o: MK Basketball
