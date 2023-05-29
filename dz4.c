@@ -1,3 +1,19 @@
+/*
+    Napisati program na programskom jeziku C koji raspoređuje novinske članke i reklame. Program najpre treba da sa standardnog ulaza pročita novinske članke i reklame. Svaki novinski članak je predstavljen realnim brojem u opsegu (0, 1], koji predstavlja procenat prostora koji dati članak zauzima na stranici, i njegovim nazivom (string nepoznate dužine). Svaka reklama je predstavljena samo nazivom (string nepoznate dužine). Novinski članci i reklame su zadati u zasebnim redovima. Najpre se čitaju novinski članci, a potom reklame. Sekcije su razdvojene praznim redom, a kraj unosa je takođe označen praznim redom. Nakon čitanja, program treba da formira novinske stranice tako da se na stranicu uvek dodaje najveći članak koji može da stane, sve dok ima odgovarajućih članaka koji nisu raspoređeni, a zatim prostor dopunjava jednom od neraspoređenih reklama. Ukoliko više novinskih članaka zadovoljava navedeni uslov, dodavati ih po redosledu pojavljivanja na standardnom ulazu. Novu stranicu formirati kada postojeća ne može da se dopuni preostalim člancima. Ukoliko nije unet dovoljan broj reklama, na stranicama dodati generičku poruku. Na kraju rada programa, neophodno je ispisati formirane stranice i neraspoređene reklame. Ukoliko je procentualni udeo stranice koji članak zauzima van navedenog opsega potrebno je ispisati poruku ERROR i korektno završiti program. 
+    
+    Program napisati prema sledećim stavkama.
+
+    1. Implementirati funkciju koja formira jednostruko ulančanu listu novinskih članaka. Funkcija treba da elemente ulančava u listu u poretku učitavanja.  
+
+    2. Implementirati funkciju koja formira jednostruko ulančanu listu reklama. Funkcija treba da elemente ulančava u listu u poretku učitavanja.  
+
+    3. Implementirati funkciju koja formira i ispisuje stranice novina. 
+
+    4. Implementirati funkciju koja oslobađa svu zauzetu dinamičku memoriju. 
+    
+    5. Napisati glavni program koji korišćenjem prethodno realizovanih funkcija pročita podatke o novinskim člancima i reklamama, izvrši traženu obradu i ispiše rezultat prema traženom formatu. Na kraju, program dealocira svu korišćenu dinamičku memoriju. 
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

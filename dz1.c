@@ -1,12 +1,18 @@
 /*
     Napisati program koji pronalazi najveći i najmanji broj poena koji je ostvaren na svakom od domaćih zadataka.
+
     Program treba da:
-    1) Učita dužinu niza, a zatim u novom redu i niz celih brojeva.
-    2) Ispiše niz na standardni izlaz.
-    3) Formira novi niz koji sadrži najveći broj poena ostvaren na svakom od domaćih zadataka.
-    4) Formira novi niz koji sadrži najmanji broj poena ostvaren na svakom od domaćih
+
+    1. Učita dužinu niza, a zatim u novom redu i niz celih brojeva.
+
+    2. Ispiše niz na standardni izlaz.
+
+    3. Formira novi niz koji sadrži najveći broj poena ostvaren na svakom od domaćih zadataka.
+
+    4. Formira novi niz koji sadrži najmanji broj poena ostvaren na svakom od domaćih
     zadataka.
-    5) Ispiše rezultujuće nizove na standardni izlaz.
+
+    5. Ispiše rezultujuće nizove na standardni izlaz.
 */
 
 #include <stdio.h>
@@ -15,9 +21,9 @@
 
 int main(void)
 {
-    int n, poeni[MAX - 1];                      // 1)
+    int n, poeni[MAX - 1];                      
     scanf("%d", &n);
-    n = n * BROJ_DOMACIH;                       // Broj elemenata niza (za svakog studenta *broj domacih)
+    n = n * BROJ_DOMACIH;                       
     if (n <= 0 || n > MAX)
     {
         return 1;
@@ -35,7 +41,7 @@ int main(void)
             return 1;
         }
     }
-    for (int i = 0; i < n; i++)                 // 2)
+    for (int i = 0; i < n; i++)                 
     {
         if (i != n - 1)
         {
@@ -46,7 +52,7 @@ int main(void)
             printf("%d\n", poeni[i]);
         }
     }
-    int t;                                      // 3)
+    int t;                                      
     int max_poeni[MAX];
     for (int i = 0; i < BROJ_DOMACIH; i++)
     {
@@ -60,7 +66,7 @@ int main(void)
         }
         max_poeni[i] = t;
     }
-    int min_poeni[MAX];                         // 4)
+    int min_poeni[MAX];                         
     for (int i = 0; i < BROJ_DOMACIH; i++)      
     {
         t = poeni[i];
@@ -73,7 +79,7 @@ int main(void)
         }
         min_poeni[i] = t;
     }
-    for (int i = 0; i < BROJ_DOMACIH; i++)      // 5)
+    for (int i = 0; i < BROJ_DOMACIH; i++)
     {
         if (i != BROJ_DOMACIH - 1)
         {

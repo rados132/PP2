@@ -3,15 +3,15 @@
 
     Program treba da:
 
-    1)   Učita dimenzije matrice, a zatim u novom redu i matricu celih brojeva. Matrica može biti zadata u više redova.
+    1. Učita dimenzije matrice, a zatim u novom redu i matricu celih brojeva. Matrica može biti zadata u više redova.
 
-    2)   Ispiše učitanu matricu. Svaka vrsta matrice treba da bude ispisana u zasebnom redu. Svaki element treba da bude razdvojen tačno jednim blanko znakom.
+    2. Ispiše učitanu matricu. Svaka vrsta matrice treba da bude ispisana u zasebnom redu. Svaki element treba da bude razdvojen tačno jednim blanko znakom.
 
-    3)   Učita dimenziju k kvadratne podmatrice. Ukoliko vrednost k nije u opsegu (0, min(m, n)], gde su m i n dimenzije originalne matrice, treba korektno završiti program.
+    3. Učita dimenziju k kvadratne podmatrice. Ukoliko vrednost k nije u opsegu (0, min(m, n)], gde su m i n dimenzije originalne matrice, treba korektno završiti program.
 
-    4)   Pronađe kvadratnu podmatricu dimenzija k x k originalne matrice, čija je suma elemenata najveća.
+    4. Pronađe kvadratnu podmatricu dimenzija k x k originalne matrice, čija je suma elemenata najveća.
 
-    5)   Ispiše podmatricu prema formatu navedenom u stavki 2.
+    5. Ispiše podmatricu prema formatu navedenom u stavki 2.
 */
 
 #include <stdio.h>
