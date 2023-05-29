@@ -1,3 +1,21 @@
+/*
+    Napisati program koji vrši konverziju podataka o kontaktima iz Comma Separated Values (.CSV) datoteke u LDAP Data Interechange Format (.LDIF) datoteku. Pored imena ulazne i izlazne datoteke, kao treći argument programa se opciono može navesti string na osnovu koga treba uraditi izostavljanje izlazne datoteke svih kontakata čiji se početak imena za prikaz (Display Name) poklapa sa zadatim stringom.
+
+    Program napisati prema sledećim stavkama.
+
+    1. Implementirati funkciju koja čita podatke o jednom kontaktu iz ulazne datoteke prema formatu koji je zadat u prilogu zadatka i formira strukturu podataka kojom se opisuje kontakt. Ukoliko ne pročita kontakt, funkcija treba da vrati vrednost NULL.
+
+    2. Implementirati funkciju koja pozivanjem prethodno realizovane funkcije formira ulančanu listu kontakata na način kako je to zahtevano tekstom zadatka.
+
+    3. Implementirati funkciju koja uklanja iz liste sve kontakte čiji se početak imena za prikaz (Display Name) poklapa sa zadatim stringom.
+
+    4. Implementirati funkciju koja vrši formiranje izlazne datoteke prema traženom formatu. Ime datoteke se zadaje kao jedan od argumenata funkcije.
+
+    5. Implementirati funkciju koja oslobađa svu zauzetu dinamičku memoriju.
+
+    Napisati glavni program koji korišćenjem prethodno realizovanih funkcija pročita ulaznu datoteku, izvrši zahtevanu obradu, formira izlaznu datoteku, dealocira svu korišćenu dinamičku memoriju i zatvori korišćene datoteke.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
