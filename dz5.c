@@ -11,9 +11,9 @@ typedef struct node
 }
 AddressBook;
 
-AddressBook* readFile(char *inputFile);
 char** readRow(FILE *input);
-void removeContacts(AddressBook *head, char *displayName);
+AddressBook* readFile(char *inputFile);
+AddressBook* removeContacts(AddressBook *head, char *displayName);
 void writeFile(AddressBook *head, char *outFile);
 void freeMemory(AddressBook *head);
 
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
     AddressBook *addressBook = readFile(argv[1]);
     if (argc == 4)
     {
-        removeContacts(addressBook, argv[3]);
+        addressBook = removeContacts(addressBook, argv[3]);
     }
     writeFile(addressBook, argv[2]);
     freeMemory(addressBook);
@@ -81,10 +81,12 @@ char** readRow(FILE *input)
                     {
                         if (buffer[i - charCnt + 1] == '"')
                         {
-                            while (buffer[++i] != ',')
+                            while (buffer[++i] != '"')
                             {
                                 charCnt++;
                             }
+                            i++;
+                            charCnt++;
                             row[columnCnt] = realloc(row[columnCnt], (charCnt + 1) * sizeof(char));
                             if (row[columnCnt] == NULL)
                             {
@@ -101,7 +103,27 @@ char** readRow(FILE *input)
                     }
                     else
                     {       
-                        strncpy(row[columnCnt], (buffer + i - charCnt), charCnt);
+                        if (buffer[i - charCnt] == '"')
+                        {
+                            while (buffer[++i] != '"')
+                            {
+                                charCnt++;
+                            }
+                            i++;
+                            charCnt++;
+                            row[columnCnt] = realloc(row[columnCnt], (charCnt + 1) * sizeof(char));
+                            if (row[columnCnt] == NULL)
+                            {
+                                printf("MEM_GRESKA");
+                                fclose(input);
+                                exit(0);
+                            }
+                            strncpy(row[columnCnt], buffer + 1, charCnt - 2);
+                        }
+                        else
+                        {
+                            strncpy(row[columnCnt], buffer, charCnt);
+                        }
                     }
                 }
                 charCnt = 0;
@@ -177,12 +199,12 @@ AddressBook* readFile(char *inputFile)
     return head;
 }
 
-void removeContacts(AddressBook *head, char *displayName)
+AddressBook* removeContacts(AddressBook *head, char *displayName)
 {
     AddressBook *tmp = head, *previous = NULL;
     while (tmp != NULL)
     {
-        if (tmp == head && strstr(tmp->info[2], displayName) != NULL)
+        if (tmp == head && strncmp(tmp->info[0], displayName, strlen(displayName)) == 0)
         {
             head = head->next;
             for (int i = 0; i < 38; i++)
@@ -194,7 +216,7 @@ void removeContacts(AddressBook *head, char *displayName)
             tmp = head;
             previous = head;
         }
-        else if (strstr(tmp->info[2], displayName) != NULL)
+        else if (strncmp(tmp->info[0], displayName, strlen(displayName)) == 0)
         {
             previous->next = tmp->next;
             for (int i = 0; i < 38; i++)
@@ -211,7 +233,8 @@ void removeContacts(AddressBook *head, char *displayName)
             previous = tmp;
             tmp = tmp->next;
         }
-    }      
+    }
+    return head;
 }
 
 void writeFile(AddressBook *head, char *outFile)
