@@ -434,14 +434,12 @@ void updateLines(int convertTo, char **lines, int n)
                         unitPointer += 2;
                         index += 2;
                     }
-
                     char *tmp = calloc(j + strlen(converted) + strlen(unit) + strlen(lines[i]) - index, sizeof(char));
                     if (tmp == NULL)
                     {
                         printf("MEM_GRESKA");
                         exit(0);
                     }
-
                     strncpy(tmp, lines[i], j);
                     strcat(tmp, converted);
                     strcat(tmp, unit);
@@ -453,7 +451,6 @@ void updateLines(int convertTo, char **lines, int n)
                         printf("MEM_GRESKA");
                         exit(0);
                     }
-
                     strcpy(lines[i], tmp);
                     free(tmp);
                 }
