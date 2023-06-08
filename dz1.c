@@ -16,25 +16,26 @@
 */
 
 #include <stdio.h>
+
 #define MAX 1000
-#define BROJ_DOMACIH 5
+#define NO_OF_ASSIGNMENTS 5
 
 int main(void)
 {
-    int n, poeni[MAX - 1];                      
+    int n, points[MAX - 1];                      
     scanf("%d", &n);
-    n = n * BROJ_DOMACIH;                       
+    n = n * NO_OF_ASSIGNMENTS;                       
     if (n <= 0 || n > MAX)
     {
         return 1;
     }
-    int el;
+    int t;
     for (int i = 0; i < n; i++)
     {
-        scanf("%d", &el);
-        if (el >= 0 && el <= 7)
+        scanf("%d", &t);
+        if (t >= 0 && t <= 7)
         {
-            poeni[i] = el;
+            points[i] = t;
         }
         else
         {
@@ -45,60 +46,59 @@ int main(void)
     {
         if (i != n - 1)
         {
-            printf("%d ", poeni[i]);
+            printf("%d ", points[i]);
         }
         else
         {
-            printf("%d\n", poeni[i]);
+            printf("%d\n", points[i]);
         }
-    }
-    int t;                                      
-    int max_poeni[MAX];
-    for (int i = 0; i < BROJ_DOMACIH; i++)
+    }                                  
+    int maxPoints[MAX];
+    for (int i = 0; i < NO_OF_ASSIGNMENTS; i++)
     {
-        t = poeni[i];
-        for (int j = i + BROJ_DOMACIH; j < n; j += BROJ_DOMACIH)
+        t = points[i];
+        for (int j = i + NO_OF_ASSIGNMENTS; j < n; j += NO_OF_ASSIGNMENTS)
         {
-            if (poeni[j] > t)
+            if (points[j] > t)
             {
-                t = poeni[j];
+                t = points[j];
             }
         }
-        max_poeni[i] = t;
+        maxPoints[i] = t;
     }
-    int min_poeni[MAX];                         
-    for (int i = 0; i < BROJ_DOMACIH; i++)      
+    int minPoints[MAX];                         
+    for (int i = 0; i < NO_OF_ASSIGNMENTS; i++)      
     {
-        t = poeni[i];
-        for (int j = i + BROJ_DOMACIH; j < n; j += BROJ_DOMACIH)
+        t = points[i];
+        for (int j = i + NO_OF_ASSIGNMENTS; j < n; j += NO_OF_ASSIGNMENTS)
         {
-            if (poeni[j] < t)
+            if (points[j] < t)
             {
-                t = poeni[j];
+                t = points[j];
             }
         }
-        min_poeni[i] = t;
+        minPoints[i] = t;
     }
-    for (int i = 0; i < BROJ_DOMACIH; i++)
+    for (int i = 0; i < NO_OF_ASSIGNMENTS; i++)
     {
-        if (i != BROJ_DOMACIH - 1)
+        if (i != NO_OF_ASSIGNMENTS - 1)
         {
-            printf("%d ", max_poeni[i]);
+            printf("%d ", maxPoints[i]);
         }
         else
         {
-            printf("%d\n", max_poeni[i]);
+            printf("%d\n", maxPoints[i]);
         }
     }
-    for (int i = 0; i < BROJ_DOMACIH; i++)                      
+    for (int i = 0; i < NO_OF_ASSIGNMENTS; i++)                      
     {
-        if (i != BROJ_DOMACIH - 1)
+        if (i != NO_OF_ASSIGNMENTS - 1)
         {
-            printf("%d ", min_poeni[i]);
+            printf("%d ", minPoints[i]);
         }
         else
         {
-            printf("%d\n", min_poeni[i]);
+            printf("%d\n", minPoints[i]);
         }
     }
     return 0;
