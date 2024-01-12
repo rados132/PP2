@@ -17,19 +17,19 @@
 
 #include <stdio.h>
 
-#define MAX 1000
+#define MAX_ARR_LEN 1000
 #define NO_OF_ASSIGNMENTS 5
 
 int main(void)
 {
-    int n, points[MAX - 1];                      
+    int n;
     scanf("%d", &n);
     n = n * NO_OF_ASSIGNMENTS;                       
-    if (n <= 0 || n > MAX)
+    if (n <= 0 || n > MAX_ARR_LEN)
     {
         return 1;
     }
-    int t;
+    int t, points[MAX_ARR_LEN];
     for (int i = 0; i < n; i++)
     {
         scanf("%d", &t);
