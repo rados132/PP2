@@ -24,7 +24,7 @@ int main(void)
 {
     int n;
     scanf("%d", &n);
-    n = n * NO_OF_ASSIGNMENTS;                       
+    n *= NO_OF_ASSIGNMENTS;                       
     if (n <= 0 || n > MAX_ARR_LEN)
     {
         return 1;
