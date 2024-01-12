@@ -53,7 +53,7 @@ int main(void)
             printf("%d\n", points[i]);
         }
     }                                  
-    int maxPoints[MAX];
+    int maxPoints[MAX_ARR_LEN];
     for (int i = 0; i < NO_OF_ASSIGNMENTS; i++)
     {
         t = points[i];
@@ -66,7 +66,7 @@ int main(void)
         }
         maxPoints[i] = t;
     }
-    int minPoints[MAX];                         
+    int minPoints[MAX_ARR_LEN];                         
     for (int i = 0; i < NO_OF_ASSIGNMENTS; i++)      
     {
         t = points[i];
